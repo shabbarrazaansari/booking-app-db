@@ -11,4 +11,3 @@ router.get('/get-data',adminControl.getData)
 
 
 module.exports = router;
-//

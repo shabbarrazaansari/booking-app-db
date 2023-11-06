@@ -15,6 +15,17 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.json({ extended: false }));
 app.use(adminRoutes);
 // sequelize.sync({force:true})
+app.delete('/get-data/delete-user/:id', async( req, res) =>{
+       
+  try {
+         const userId = req.params.id;
+         await User.destroy({where: {id : userId}});
+         res.sendStatus(200);
+  } catch (error) {
+     console.log(error)
+     res.sendStatus(500).json(err);
+  }
+})
  sequelize.sync() 
   .then(() => {
     app.listen(port, () => {
